@@ -130,7 +130,7 @@ class APIError(Exception):
 class API(object):
     key = None
     secret = None
-    server = 'http://api.faceplusplus.com/'
+    server = 'http://www.apius.faceplusplus.com/'
 
     decode_result = True
     timeout = None
@@ -231,7 +231,8 @@ class _APIProxy(object):
         while True:
             retry -= 1
             try:
-                ret = urllib2.urlopen(request, timeout = self._api.timeout).read()
+                ret = urllib2.urlopen('http://apius.faceplusplus.com/detection/detect?url=http%3A%2F%2Fcn.faceplusplus.com%2Fstatic%2Fresources%2Fpython_demo%2F1.jpg&api_secret=7dW5BGpWgGwNgD2zsEmYJJe9rok2vWk4&api_key=a82b06e8e3beb94930b33a186a31e259')
+                    # urllib2.urlopen(request, timeout = self._api.timeout).read()
                 break
             except urllib2.HTTPError as e:
                 raise APIError(e.code, url, e.read())
